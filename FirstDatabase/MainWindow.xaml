@@ -1,0 +1,40 @@
+﻿<Window x:Class="FirstDatabase.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FirstDatabase"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <ListView Grid.Column="2" ItemsSource="{Binding PersonsObsv}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding ID}" />
+                    <GridViewColumn DisplayMemberBinding="{Binding FirstName}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding LastName}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Email}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Birthday}"/>
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+        <Button Grid.Column="0" Name="BtnLoadDB" Content="Load DB" HorizontalAlignment="Left" Margin="10,387,0,0" VerticalAlignment="Top" Height="37" Width="179" Click="BtnLoadDB_Click"/>
+
+        <TextBox Text="{Binding FirstName}" HorizontalAlignment="Left" Margin="82,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding LastName}" HorizontalAlignment="Left" Margin="82,51,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding Email}" HorizontalAlignment="Left" Margin="82,74,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="First Name" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top"/>
+        <Label Content="Last Name" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="18,74,0,0" VerticalAlignment="Top"/>
+        <Label Content="Birthday" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top"/>
+        <DatePicker SelectedDate="{Binding Birthday}" HorizontalAlignment="Left" Margin="82,103,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="BtnCreate" Content="Create" HorizontalAlignment="Left" Margin="29,158,0,0" VerticalAlignment="Top" Height="46" Width="155" Click="BtnCreate_Click"/>
+
+    </Grid>
+</Window>
