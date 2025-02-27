@@ -11,8 +11,8 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
-        <ListView Grid.Column="2" ItemsSource="{Binding PersonsObsv}">
+
+        <ListView x:Name="ListData" SelectionChanged="ListData_SelectionChanged" Grid.Column="2" ItemsSource="{Binding PersonsObsv}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding ID}" />
@@ -35,6 +35,6 @@
         <Label Content="Birthday" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top"/>
         <DatePicker SelectedDate="{Binding Birthday}" HorizontalAlignment="Left" Margin="82,103,0,0" VerticalAlignment="Top"/>
         <Button x:Name="BtnCreate" Content="Create" HorizontalAlignment="Left" Margin="29,158,0,0" VerticalAlignment="Top" Height="46" Width="155" Click="BtnCreate_Click"/>
-
+        <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="Left" Margin="221,387,0,0" VerticalAlignment="Top" Width="141" Height="37" Click="BtnDelete_Click" />
     </Grid>
 </Window>

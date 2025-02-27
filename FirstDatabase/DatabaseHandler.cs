@@ -78,5 +78,20 @@ namespace FirstDatabase
                 cmd.ExecuteNonQuery();
             }
         }
+
+        // DELETE 
+        public void DeleteItem(string query)
+        {
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = query;
+                // Executes the specified query
+                cmd.ExecuteNonQuery();
+
+            }
+        }
+
     }
 }

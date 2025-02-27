@@ -18,6 +18,8 @@ namespace FirstDatabase
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Saving the person the user clicks on for edit and delete
+        private Person selectedItem;
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -40,6 +42,35 @@ namespace FirstDatabase
            
             db = new DatabaseHandler(connection);
         }
+
+        // Event handler for user's list selection
+
+        private void ListData_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedItem = (Person)ListData.SelectedItem;
+        }
+
+        private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedItem == null)
+            {
+                MessageBox.Show("Please select an item to delete.");
+                return;
+            }
+
+            var result = MessageBox.Show($"Are you sure you want to delete: {selectedItem.FirstName}?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                int userID = selectedItem.ID;
+
+                string query = $"DELETE FROM Persons WHERE ID = {userID}";
+                db.DeleteItem(query);
+
+            }
+        }
+
+
 
         private void BtnLoadDB_Click(object sender, RoutedEventArgs e)
         {
@@ -65,5 +96,7 @@ namespace FirstDatabase
                 + $"'{DateOnly.FromDateTime(Birthday).ToString("yyyy-MM-dd")}'); ";
             db.ExecuteSQLQueryWrite(query);
         }
+
+       
     }
 }
