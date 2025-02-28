@@ -48,8 +48,11 @@ namespace FirstDatabase
         private void ListData_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedItem = (Person)ListData.SelectedItem;
+
+
         }
 
+        // Delete Button
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
             if (selectedItem == null)
@@ -65,11 +68,43 @@ namespace FirstDatabase
                 int userID = selectedItem.ID;
 
                 string query = $"DELETE FROM Persons WHERE ID = {userID}";
-                db.DeleteItem(query);
+                db.ExecuteSQLQueryWrite(query);
+                PersonsObsv.Remove(selectedItem);
 
             }
         }
 
+        // Edit Button
+
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (selectedItem == null)
+            {
+                MessageBox.Show("Please select an item to Edit.");
+                return;
+            }
+
+            // Next time try to put this in the selection changed event without getting errors
+
+            TxtBoxFirstName.Text = selectedItem.FirstName;
+            TxtBoxLastName.Text = selectedItem.LastName;
+            TxtBoxEmail.Text = selectedItem.Email;
+            DatePickerBirthday.SelectedDate = DateTime.Parse(selectedItem.Birthday.ToString());
+
+            var query = $"UPDATE Persons SET FirstName = '{FirstName}', LastName = '{LastName}', Email = '{Email}', Birthday = '{Birthday.ToString("yyyy-MM-dd")}'  WHERE ID = {selectedItem.ID}";
+
+           db.ExecuteSQLQueryWrite(query);
+
+            selectedItem.FirstName = FirstName;
+            selectedItem.LastName = LastName;
+            selectedItem.Email = Email; 
+            selectedItem.Birthday = DateOnly.FromDateTime(Birthday);
+
+            ListData.ItemsSource = null;
+            ListData.ItemsSource = PersonsObsv;
+
+        }
 
 
         private void BtnLoadDB_Click(object sender, RoutedEventArgs e)
@@ -97,6 +132,6 @@ namespace FirstDatabase
             db.ExecuteSQLQueryWrite(query);
         }
 
-       
+     
     }
 }

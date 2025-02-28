@@ -7,12 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="311*"/>
+            <RowDefinition Height="123*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <ListView x:Name="ListData" SelectionChanged="ListData_SelectionChanged" Grid.Column="2" ItemsSource="{Binding PersonsObsv}">
+        <ListView x:Name="ListData" SelectionChanged="ListData_SelectionChanged" Grid.Column="1" ItemsSource="{Binding PersonsObsv}" Grid.RowSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding ID}" />
@@ -24,17 +28,19 @@
             </ListView.View>
 
         </ListView>
-        <Button Grid.Column="0" Name="BtnLoadDB" Content="Load DB" HorizontalAlignment="Left" Margin="10,387,0,0" VerticalAlignment="Top" Height="37" Width="179" Click="BtnLoadDB_Click"/>
+        <Button Grid.Column="0" Name="BtnLoadDB" Content="Load DB" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Height="37" Width="179" Click="BtnLoadDB_Click" Grid.Row="1"/>
 
-        <TextBox Text="{Binding FirstName}" HorizontalAlignment="Left" Margin="82,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Text="{Binding LastName}" HorizontalAlignment="Left" Margin="82,51,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox Text="{Binding Email}" HorizontalAlignment="Left" Margin="82,74,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TxtBoxFirstName" Text="{Binding FirstName}" HorizontalAlignment="Left" Margin="82,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TxtBoxLastName" Text="{Binding LastName}" HorizontalAlignment="Left" Margin="82,51,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TxtBoxEmail" Text="{Binding Email}" HorizontalAlignment="Left" Margin="82,74,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <Label Content="First Name" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top"/>
         <Label Content="Last Name" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top"/>
         <Label Content="Email" HorizontalAlignment="Left" Margin="18,74,0,0" VerticalAlignment="Top"/>
         <Label Content="Birthday" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top"/>
-        <DatePicker SelectedDate="{Binding Birthday}" HorizontalAlignment="Left" Margin="82,103,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="DatePickerBirthday" SelectedDate="{Binding Birthday}" HorizontalAlignment="Left" Margin="82,103,0,0" VerticalAlignment="Top"/>
         <Button x:Name="BtnCreate" Content="Create" HorizontalAlignment="Left" Margin="29,158,0,0" VerticalAlignment="Top" Height="46" Width="155" Click="BtnCreate_Click"/>
-        <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="Left" Margin="221,387,0,0" VerticalAlignment="Top" Width="141" Height="37" Click="BtnDelete_Click" />
+        <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="Left" Margin="221,76,0,0" VerticalAlignment="Top" Width="141" Height="37" Click="BtnDelete_Click" Grid.Row="1" />
+        <Button x:Name="BtnEdit" Content="Edit" HorizontalAlignment="Left" Margin="221,34,0,0" VerticalAlignment="Top" Width="141" Height="37" Click="BtnEdit_Click" Grid.Row="1"  />
+
     </Grid>
 </Window>
